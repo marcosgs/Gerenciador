@@ -1,11 +1,15 @@
 package br.com.alura.gerenciador.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import br.com.alura.gerenciador.dao.UsuarioDAO;
+import br.com.alura.gerenciador.model.Usuario;
 
 public class Login extends HttpServlet{
 	
@@ -13,9 +17,17 @@ public class Login extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		PrintWriter writer = resp.getWriter();
 		
+		String email = req.getParameter("email");
 		
+		String senha = req.getParameter("senha");
 		
-		super.doPost(req, resp);
+		Usuario usuario = new UsuarioDAO().buscaPorEmailESenha(email, senha);
+		
+		if (usuario.equals(null)) {
+			writer.append("<html><body>Usuário ou senha inválida</body></html>");
+		}
+		
 	}
 }
