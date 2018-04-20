@@ -23,7 +23,6 @@ public class Login extends HttpServlet{
 		PrintWriter writer = resp.getWriter();
 		
 		String email = req.getParameter("email");
-		
 		String senha = req.getParameter("senha");
 		
 		Usuario usuario = new UsuarioDAO().buscaPorEmailESenha(email, senha);
@@ -32,9 +31,10 @@ public class Login extends HttpServlet{
 			writer.println("<html><body>Usuário ou senha inválida</body></html>");
 		}else {
 			Cookie cookie = new Cookie("usuario", email);
+			resp.addCookie(cookie);
+			
 			writer.println("<html><body>Usuário " + email + " está logado!</body></html>");
 			
-			resp.addCookie(cookie);
 		}
 		
 	}

@@ -19,7 +19,7 @@ public class NovaEmpresa extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		//Teste
 		String nome = req.getParameter("nome");
 		
 		Empresa empresa = new Empresa(nome);
