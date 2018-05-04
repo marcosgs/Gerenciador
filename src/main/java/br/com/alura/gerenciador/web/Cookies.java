@@ -12,11 +12,16 @@ public class Cookies {
 	}
 	
 	public Cookie getUsuarioLogado() {
-		if (cookie == null)
+		
+		if (cookies == null)
 			return null;
 		
 		for (Cookie cookie : cookies) {
-			if (cookie.)
+			if (cookie.getName().equals("usuario.logado")) {
+				return cookie;
+			}
 		}
+		
+		return null;
 	}
 }
