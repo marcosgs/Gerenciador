@@ -2,12 +2,9 @@ package br.com.alura.gerenciador.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +34,7 @@ public class Login extends HttpServlet {
 		} else {
 
 			HttpSession session = req.getSession();
-			session.setAttribute("usuario.logado", usuario); // Adiciona usuário logado a sessão
+			session.setAttribute("usuarioLogado", usuario); // Adiciona usuário logado a sessão
 
 			writer.println("<html><body>Usuário " + email + " está logado!</body></html>");
 

@@ -8,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -25,7 +24,7 @@ public class FiltroDeAuditoria implements Filter {
 		HttpSession session = req.getSession();
 		String usuario = "deslogado";
 		
-		Usuario usuarioLogado = (Usuario) session.getAttribute("usuario.logado");
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 		
 		if (usuarioLogado != null) {
 			usuario = usuarioLogado.getEmail();
