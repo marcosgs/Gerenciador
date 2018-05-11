@@ -9,24 +9,26 @@
 <body>
 	Bem vindo ao nosso gerenciador de empresas!
 	<c:if test="${not empty usuarioLogado }">
-		Você está logado como ${usuarioLogado.email}<br/>
+		Voc� est� logado como ${usuarioLogado.email}<br/>
 	</c:if>
 	
 	<br />
-	<form action="novaEmpresa" method="POST">
-		Nome: <input type="text" name="nome" /><br> <br> <input
-			type="submit" value="Enviar" />
+	<form action="executa" method="POST">
+		<input type="hidden" name="tarefa" value="NovaEmpresa" />
+		Nome: <input type="text" name="nome" /><br> <br> 
+		<input type="submit" value="Salvar" />
 	</form>
 	<br>
 	<br>
-	<form action="login" method="post">
-		Email: <input type="email" name="email" /> <br> <br> Senha:
-		<input type="password" name="senha" /> <br>
+	<form action="executa" method="post">
+		<input type="hidden" name="tarefa" value="Login" />
+		Email: <input type="email" name="email" /> <br> <br> 
+		Senha: <input type="password" name="senha" /> <br>
 		<br> <input type="submit" value="Logar" />
 	</form>
 	<br>
-	<form action="logout" method="post">
-		<input type="hidden" name="tarefa" value="logout">	
+	<form action="executa" method="post">
+		<input type="hidden" name="tarefa" value="Logout">
 		<input type="submit" value="logout">
 	</form>
 
