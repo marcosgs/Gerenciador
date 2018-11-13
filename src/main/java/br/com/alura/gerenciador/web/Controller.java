@@ -9,32 +9,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns ="/executa")
-public class Controller extends HttpServlet{
-	
+@WebServlet(urlPatterns = "/executa")
+public class Controller extends HttpServlet {
+
 	private static final long serialVersionUID = 6626322586019870362L;
 
 	@Override
+	public void init() throws ServletException {
+		super.init();
+		System.out.println("Inicializando a Servlet " + this);
+	}
+
+	@Override
+	public void destroy() {
+		super.destroy();
+		System.out.println("Destruindo a Servlet" + this);
+	}
+
+	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		String tarefa = req.getParameter("tarefa");
-		
+
 		if (tarefa == null)
-	        throw new IllegalArgumentException(
-	                "Você esqueceu de passar a tarefa");
-		
-		String nomeDaClasse= "br.com.alura.gerenciador.web." + tarefa;
-		
+			throw new IllegalArgumentException("Você esqueceu de passar a tarefa");
+
+		String nomeDaClasse = "br.com.alura.gerenciador.web." + tarefa;
+
 		try {
-			Class type = Class.forName(nomeDaClasse);
+			Class<?> type = Class.forName(nomeDaClasse);
 			Tarefa instancia = (Tarefa) type.newInstance();
-			String pagina= instancia.executa(req,resp);
-			
-			RequestDispatcher disp = req.getRequestDispatcher(pagina); //Pega o Dispacher
+			String pagina = instancia.executa(req, resp);
+
+			RequestDispatcher disp = req.getRequestDispatcher(pagina);
 			disp.forward(req, resp);
-		}catch (Exception e) {
-		    throw new ServletException(e);
+		} catch (Exception e) {
+			throw new ServletException(e);
 		}
-		
+
 	}
 }
